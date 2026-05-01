@@ -62,9 +62,9 @@ cd ollama-workshop
 Create and activate a virtual environment:
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # macOS / Linux / WSL
-# venv\Scripts\activate   # Windows PowerShell / CMD
+python3 -m venv .venv
+source .venv/bin/activate  # macOS / Linux / WSL
+# .venv\Scripts\activate   # Windows PowerShell / CMD.
 ```
 
 Install the dependencies:
@@ -156,11 +156,11 @@ What this teaches:
 - Ollama sends back tool calls instead of only plain text
 - Python executes the tool and feeds the result back into the conversation
 
-## Suggested Teaching Flow
+## Quick notes
 
 ### 1. Start simple
 
-Open `01_basic_generation.py` and point out:
+Open `01_basic_generation.py`:
 
 - `MODEL` can be changed for different hardware
 - `Client(host=HOST)` still talks to a local server
@@ -168,27 +168,27 @@ Open `01_basic_generation.py` and point out:
 
 ### 2. Add interactivity
 
-Move to `02_streaming_chat.py` and show:
+In `02_streaming_chat.py`:
 
-- how streaming improves perceived speed
-- how the assistant reply is accumulated
-- why we append both user and assistant turns into `messages`
+- streaming improves perceived speed
+- assistant reply is accumulated
+- we append both user and assistant turns into `messages` for context of past interaction
 
 ### 3. Make the output reliable
 
-Open `03_structured_outputs.py` and show:
+In `03_structured_outputs.py`:
 
-- the Pydantic schema
-- the `format=` argument
-- the difference between raw model text and validated JSON
+- use the Pydantic schema
+- use the `format=` argument
+- compare the difference between raw model text and validated JSON
 
 ### 4. Give the model a tool
 
-Open `04_local_tool_calling.py` and show:
+In `04_local_tool_calling.py`:
 
-- the Python `get_weather` function
-- the `tools=[get_weather]` argument
-- the ReAct-style loop that keeps asking the model what to do next
+- use the Python `get_weather` function
+- use the `tools=[get_weather]` argument
+- use the ReAct-style loop that keeps asking the model what to do next
 
 ## Troubleshooting
 
@@ -214,8 +214,6 @@ If structured outputs are inconsistent:
 - use `temperature=0`
 
 ## Hardware Tuning Notes
-
-For a short workshop, the easiest tuning advice is:
 
 - Smaller models start faster and use less RAM
 - Longer prompts and longer chat history consume more context
