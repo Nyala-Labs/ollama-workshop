@@ -1,0 +1,22 @@
+# Project Context
+This repository contains the code for a 2-hour beginner technical workshop on "Running Local LLMs with Ollama." The goal is to teach participants how to interact with local open-source models using Python, moving from basic chat generation to structured JSON outputs and local tool calling.
+
+# Audience Constraints
+Participants are beginners. Many will NOT have Nvidia GPUs. They will be running on older Intel Macs, standard Windows laptops, or base-model M1 Macs. The code must be lightweight and hardware-agnostic.
+
+# Tech Stack
+- Python 3.11+
+- `ollama` (Official Python client)
+- `pydantic` (For structured outputs)
+- `python-dotenv`
+
+# Coding Standards & Guidelines
+1. **Modularity by Difficulty:** Structure the code in sequentially numbered files so beginners can follow along:
+   - `01_basic_generation.py`: Simple prompt and response.
+   - `02_streaming_chat.py`: How to stream tokens to the console.
+   - `03_structured_outputs.py`: Forcing the local model to return strict JSON using Pydantic.
+   - `04_local_tool_calling.py`: A basic ReAct loop using a local model and a dummy Python function (e.g., `get_weather`).
+2. **Model Flexibility:** Define the model name as a variable at the top of every script (e.g., `MODEL = "llama3.2:1b"`). Add comments explaining that users can change this string based on their hardware.
+3. **Heavy Commenting:** Explain *why* things are happening. Emphasize the difference between calling an OpenAI API (network call) vs. Ollama (local compute). 
+4. **Error Handling:** Include `try/except` blocks specifically checking for `ollama.ResponseError`. Add a friendly print statement reminding them: "Did you remember to start the Ollama app and run 'ollama run <model_name>'?"
+5. **Simplicity:** Do NOT use LangChain or LlamaIndex. Write pure Python using the official `ollama` client so participants understand the raw mechanics.
